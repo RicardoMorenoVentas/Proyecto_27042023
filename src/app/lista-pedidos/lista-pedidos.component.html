@@ -1,0 +1,32 @@
+<ng-template #vacia><h3>Lista vacia</h3></ng-template>
+<div *ngIf="listaPedidos.length > 0; else vacia">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Pedido ID</th>
+        <th>ID Cliente</th>
+        <th>Forma de Pago</th>
+        <th>Dirección de entrega</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ind of listaPedidos">
+        <td>{{ ind.pedidoID }}</td>
+        <td>{{ ind.clienteID }}</td>
+        <td>{{ ind.formaPago }}</td>
+        <td>{{ ind.direccion }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<button
+  type="button"
+  [routerLink]="['/form-pedido']"
+  routerLinkActive="router-link-active"
+>
+  Añadir nuevo pedido
+</button>
+<br />
+<hr />
+<br />
+<router-outlet></router-outlet>

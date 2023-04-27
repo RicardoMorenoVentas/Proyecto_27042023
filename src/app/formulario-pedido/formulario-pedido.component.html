@@ -1,0 +1,47 @@
+<form #fstyle="ngForm" [formGroup]="formulario!" (ngSubmit)="mandarPedido()">
+  <p>
+    <small>ID de Cliente</small><br /><input
+      type="number"
+      formControlName="clienteID"
+    />
+  </p>
+  <p>
+    <small>Forma de pago</small
+    ><br /><select formControlName="formaPago">
+      <option *ngFor="let ind of formasPagoArr" [value]="ind">{{ ind }}</option>
+    </select>
+  </p>
+  <p>
+    <small>Dirección de entrega</small><br /><input
+      type="text"
+      formControlName="direccion"
+    />
+  </p>
+  <button
+    type="button"
+    [routerLink]="['form-producto']"
+    routerLinkActive="router-link-active"
+    [queryParams]="{ id: pedido!.pedidoID }"
+  >
+    Agregar producto
+  </button>
+  <hr>
+  <router-outlet></router-outlet>
+  <br>
+  <div id="lista-productos">
+    <ul>
+      <li *ngFor="let ind of servicio.productosTemp">ID de producto: {{ind.productoID}} , ID de pedido: {{ind.pedidoID}}, cantidad: {{ind.cantidad}}</li>
+    </ul>
+  </div>
+  <hr>
+  <br>
+  <button type="submit">Enviar pedido</button>
+  <br>
+  <button
+    type="reset"
+    [routerLink]="['']"
+    routerLinkActive="router-link-active"
+  >
+    Cancelar
+  </button>
+</form>
