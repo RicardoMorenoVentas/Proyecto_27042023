@@ -1,5 +1,5 @@
 <form #fstyle="ngForm" [formGroup]="formulario!" (ngSubmit)="mandarPedido()">
-  <p><small>Id producto</small><br>{{producto!.productoID}}</p>
+  <p><small>Id producto</small><br><input type="number" formControlName="idProducto"></p>
   <p><small>Cantidad de producto</small><br><input type="number" formControlName="cantidad"></p>
   <button type="submit">Enviar</button>
   <button [routerLink]="['/form-pedido']" routerLinkActive="router-link-active"  type="reset">Cancelar</button>

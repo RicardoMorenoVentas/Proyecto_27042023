@@ -71,6 +71,10 @@ export class FormularioPedidoComponent implements OnInit {
       this._servicio.productosTemp.map(producto => productos.push(producto));
       console.log(productos);
     });
+    this.resetFunction();
+  }
+
+  resetFunction(){
     this._servicio.productosTemp = [];
     this._formulario?.reset();
     this.enrutador.navigate(['']);

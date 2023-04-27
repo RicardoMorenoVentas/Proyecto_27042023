@@ -38,9 +38,10 @@
   <button type="submit">Enviar pedido</button>
   <br>
   <button
-    type="reset"
+    type="button"
     [routerLink]="['']"
     routerLinkActive="router-link-active"
+    (click)="resetFunction()"
   >
     Cancelar
   </button>

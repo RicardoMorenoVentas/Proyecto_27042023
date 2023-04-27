@@ -46,12 +46,14 @@ export class FormularioProductoComponent implements OnInit {
     }
     this._producto = new Producto(this._idPedido);
     this._formulario = this.constructorForms.group({
+      'idProducto' : new FormControl(this._producto.productoID),
       'cantidad' : new FormControl(this._producto.cantidad)
     });
   }
 
   mandarPedido(){
     this._producto!.cantidad = this._formulario?.value['cantidad'];
+    this._producto!.productoID = this._formulario?.value['idProducto'];
     this.servicio.productosTemp.push(this._producto!)
     this.enrutador.navigate(['/form-pedido']);
     this._formulario!.reset();
