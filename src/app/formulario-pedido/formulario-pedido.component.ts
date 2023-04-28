@@ -80,6 +80,10 @@ export class FormularioPedidoComponent implements OnInit {
     this.resetFunction();
   }
 
+  hayPedidos():boolean{
+    return this._servicio.productosTemp.length > 0;
+  }
+
   resetFunction(){
     this._servicio.productosTemp = [];
     this._formulario?.reset();

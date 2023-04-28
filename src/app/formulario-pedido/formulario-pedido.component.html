@@ -35,7 +35,7 @@
   </div>
   <hr>
   <br>
-  <button type="submit">Enviar pedido</button>
+  <button type="submit" [disabled]="!hayPedidos()">Enviar pedido</button>
   <br>
   <button
     type="button"
