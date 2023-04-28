@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Forma_pago } from 'src/_models/Enums';
 import { Pedido } from 'src/_models/Pedido';
 import { GestionPedidosService } from 'src/_services/gestion-pedidos.service';
@@ -20,7 +20,6 @@ export class FormularioPedidoComponent implements OnInit {
 
   constructor(
     private _servicio: GestionPedidosService,
-    private rutaActiva: ActivatedRoute,
     private enrutador: Router,
     private fb: FormBuilder
   ) { }
@@ -61,6 +60,10 @@ export class FormularioPedidoComponent implements OnInit {
   }
 
   mandarPedido() {
+    if (this._servicio.productosTemp.length < 1){
+      alert("¡No hay productos en el pedido!")
+      this.resetFunction();
+    }
     this.servicio.pedidosObservable.subscribe((pedidos) => {
       this._pedido!.clienteID = this._formulario!.value['clienteID'];
       this._pedido!.formaPago = this._formulario!.value['formaPago'];
@@ -68,7 +71,10 @@ export class FormularioPedidoComponent implements OnInit {
       pedidos.push(this._pedido!);
     });
     this._servicio.productosObservable.subscribe((productos) => {
+      // Esto
       this._servicio.productosTemp.map(producto => productos.push(producto));
+      // Es lo mismo a esto
+      // productos.push(...this._servicio.productosTemp);
       console.log(productos);
     });
     this.resetFunction();
